@@ -1,301 +1,148 @@
 // Agrego array de objetos con datos que vamos a utilizar
-const MOCKED_DATA = [
+const PRODUCTS = [
   {
+    id: 'product1',
     name: 'CR90 corvette',
-    model: 'CR90 corvette',
     manufacturer:
       'Corellian Engineering Corporation',
-    cost_in_credits: '3500000',
-    length: '150',
-    max_atmosphering_speed: '950',
-    crew: '30-165',
-    passengers: '600',
-    cargo_capacity: '3000000',
-    consumables: '1 year',
-    hyperdrive_rating: '2.0',
-    MGLT: '60',
-    starship_class: 'corvette',
-    pilots: [],
-    films: [
-      'https://swapi.dev/api/films/1/',
-      'https://swapi.dev/api/films/3/',
-      'https://swapi.dev/api/films/6/',
-    ],
-    created: '2014-12-10T14:20:33.369000Z',
-    edited: '2014-12-20T21:23:49.867000Z',
-    url: 'https://swapi.dev/api/starships/2/',
+    cost_in_credits: 350,
+    image: '../img/cr90corvette.jpg',
   },
   {
+    id: 'product2',
     name: 'Star Destroyer',
-    model: 'Imperial I-class Star Destroyer',
     manufacturer: 'Kuat Drive Yards',
-    cost_in_credits: '150000000',
-    length: '1,600',
-    max_atmosphering_speed: '975',
-    crew: '47,060',
-    passengers: 'n/a',
-    cargo_capacity: '36000000',
-    consumables: '2 years',
-    hyperdrive_rating: '2.0',
-    MGLT: '60',
-    starship_class: 'Star Destroyer',
-    pilots: [],
-    films: [
-      'https://swapi.dev/api/films/1/',
-      'https://swapi.dev/api/films/2/',
-      'https://swapi.dev/api/films/3/',
-    ],
-    created: '2014-12-10T15:08:19.848000Z',
-    edited: '2014-12-20T21:23:49.870000Z',
-    url: 'https://swapi.dev/api/starships/3/',
+    cost_in_credits: 150,
+    image: '../img/stardestroyer.jpg',
   },
   {
+    id: 'product3',
     name: 'Sentinel-class landing craft',
-    model: 'Sentinel-class landing craft',
     manufacturer:
       'Sienar Fleet Systems, Cyngus Spaceworks',
-    cost_in_credits: '240000',
-    length: '38',
-    max_atmosphering_speed: '1000',
-    crew: '5',
-    passengers: '75',
-    cargo_capacity: '180000',
-    consumables: '1 month',
-    hyperdrive_rating: '1.0',
-    MGLT: '70',
-    starship_class: 'landing craft',
-    pilots: [],
-    films: ['https://swapi.dev/api/films/1/'],
-    created: '2014-12-10T15:48:00.586000Z',
-    edited: '2014-12-20T21:23:49.873000Z',
-    url: 'https://swapi.dev/api/starships/5/',
-  },
-  {
-    name: 'Death Star',
-    model: 'DS-1 Orbital Battle Station',
-    manufacturer:
-      'Imperial Department of Military Research, Sienar Fleet Systems',
-    cost_in_credits: '1000000000000',
-    length: '120000',
-    max_atmosphering_speed: 'n/a',
-    crew: '342,953',
-    passengers: '843,342',
-    cargo_capacity: '1000000000000',
-    consumables: '3 years',
-    hyperdrive_rating: '4.0',
-    MGLT: '10',
-    starship_class:
-      'Deep Space Mobile Battlestation',
-    pilots: [],
-    films: ['https://swapi.dev/api/films/1/'],
-    created: '2014-12-10T16:36:50.509000Z',
-    edited: '2014-12-20T21:26:24.783000Z',
-    url: 'https://swapi.dev/api/starships/9/',
-  },
-  {
-    name: 'Millennium Falcon',
-    model: 'YT-1300 light freighter',
-    manufacturer:
-      'Corellian Engineering Corporation',
-    cost_in_credits: '100000',
-    length: '34.37',
-    max_atmosphering_speed: '1050',
-    crew: '4',
-    passengers: '6',
-    cargo_capacity: '100000',
-    consumables: '2 months',
-    hyperdrive_rating: '0.5',
-    MGLT: '75',
-    starship_class: 'Light freighter',
-    pilots: [
-      'https://swapi.dev/api/people/13/',
-      'https://swapi.dev/api/people/14/',
-      'https://swapi.dev/api/people/25/',
-      'https://swapi.dev/api/people/31/',
-    ],
-    films: [
-      'https://swapi.dev/api/films/1/',
-      'https://swapi.dev/api/films/2/',
-      'https://swapi.dev/api/films/3/',
-    ],
-    created: '2014-12-10T16:59:45.094000Z',
-    edited: '2014-12-20T21:23:49.880000Z',
-    url: 'https://swapi.dev/api/starships/10/',
-  },
-  {
-    name: 'Y-wing',
-    model: 'BTL Y-wing',
-    manufacturer: 'Koensayr Manufacturing',
-    cost_in_credits: '134999',
-    length: '14',
-    max_atmosphering_speed: '1000km',
-    crew: '2',
-    passengers: '0',
-    cargo_capacity: '110',
-    consumables: '1 week',
-    hyperdrive_rating: '1.0',
-    MGLT: '80',
-    starship_class: 'assault starfighter',
-    pilots: [],
-    films: [
-      'https://swapi.dev/api/films/1/',
-      'https://swapi.dev/api/films/2/',
-      'https://swapi.dev/api/films/3/',
-    ],
-    created: '2014-12-12T11:00:39.817000Z',
-    edited: '2014-12-20T21:23:49.883000Z',
-    url: 'https://swapi.dev/api/starships/11/',
-  },
-  {
-    name: 'X-wing',
-    model: 'T-65 X-wing',
-    manufacturer: 'Incom Corporation',
-    cost_in_credits: '149999',
-    length: '12.5',
-    max_atmosphering_speed: '1050',
-    crew: '1',
-    passengers: '0',
-    cargo_capacity: '110',
-    consumables: '1 week',
-    hyperdrive_rating: '1.0',
-    MGLT: '100',
-    starship_class: 'Starfighter',
-    pilots: [
-      'https://swapi.dev/api/people/1/',
-      'https://swapi.dev/api/people/9/',
-      'https://swapi.dev/api/people/18/',
-      'https://swapi.dev/api/people/19/',
-    ],
-    films: [
-      'https://swapi.dev/api/films/1/',
-      'https://swapi.dev/api/films/2/',
-      'https://swapi.dev/api/films/3/',
-    ],
-    created: '2014-12-12T11:19:05.340000Z',
-    edited: '2014-12-20T21:23:49.886000Z',
-    url: 'https://swapi.dev/api/starships/12/',
-  },
-  {
-    name: 'TIE Advanced x1',
-    model: 'Twin Ion Engine Advanced x1',
-    manufacturer: 'Sienar Fleet Systems',
-    cost_in_credits: 'unknown',
-    length: '9.2',
-    max_atmosphering_speed: '1200',
-    crew: '1',
-    passengers: '0',
-    cargo_capacity: '150',
-    consumables: '5 days',
-    hyperdrive_rating: '1.0',
-    MGLT: '105',
-    starship_class: 'Starfighter',
-    pilots: ['https://swapi.dev/api/people/4/'],
-    films: ['https://swapi.dev/api/films/1/'],
-    created: '2014-12-12T11:21:32.991000Z',
-    edited: '2014-12-20T21:23:49.889000Z',
-    url: 'https://swapi.dev/api/starships/13/',
-  },
-  {
-    name: 'Executor',
-    model: 'Executor-class star dreadnought',
-    manufacturer:
-      'Kuat Drive Yards, Fondor Shipyards',
-    cost_in_credits: '1143350000',
-    length: '19000',
-    max_atmosphering_speed: 'n/a',
-    crew: '279,144',
-    passengers: '38000',
-    cargo_capacity: '250000000',
-    consumables: '6 years',
-    hyperdrive_rating: '2.0',
-    MGLT: '40',
-    starship_class: 'Star dreadnought',
-    pilots: [],
-    films: [
-      'https://swapi.dev/api/films/2/',
-      'https://swapi.dev/api/films/3/',
-    ],
-    created: '2014-12-15T12:31:42.547000Z',
-    edited: '2014-12-20T21:23:49.893000Z',
-    url: 'https://swapi.dev/api/starships/15/',
-  },
-  {
-    name: 'Rebel transport',
-    model: 'GR-75 medium transport',
-    manufacturer: 'Gallofree Yards, Inc.',
-    cost_in_credits: 'unknown',
-    length: '90',
-    max_atmosphering_speed: '650',
-    crew: '6',
-    passengers: '90',
-    cargo_capacity: '19000000',
-    consumables: '6 months',
-    hyperdrive_rating: '4.0',
-    MGLT: '20',
-    starship_class: 'Medium transport',
-    pilots: [],
-    films: [
-      'https://swapi.dev/api/films/2/',
-      'https://swapi.dev/api/films/3/',
-    ],
-    created: '2014-12-15T12:34:52.264000Z',
-    edited: '2014-12-20T21:23:49.895000Z',
-    url: 'https://swapi.dev/api/starships/17/',
+    cost_in_credits: 24,
+    image: '../img/sentinel.jpg',
   },
 ];
 
-// Tomo el control de los divs con JS
-const cart = document.getElementById('cart');
-const catalogue =
+// Plantilla para la card
+{
+  /* <div class="col border border-2">
+  <div class="card h-100">
+    <h5 class="card-title">Title</h5>
+    <p class="card-text bold-test">Text</p>
+  </div>
+</div>; */
+}
+
+// 1: Tomamos el control de los id necesarios e inicializamos lo que haga falta.
+
+const cartContainer =
+  document.getElementById('cart');
+const catalogueContainer =
   document.getElementById('catalogue');
+const btnClear = document
+  .getElementById('btn-clear')
+  .addEventListener('click', () => clearCart());
+const total = document.getElementById('total');
 
-// Inicializando el carrito vacio
-let cartContent = [];
+let cart = [];
 
-// Creo una funcion para mostrar las cards
-function createCards(data, id, needsButton) {
-  data.forEach(d => {
-    // Creación con JS de card de bootstrap
-    let card = document.createElement('div');
-    card.className = `col border border-2 border-${
-      id === catalogue ? 'primary' : 'secondary'
-    } p-2 bg-light`;
+// 2: Poblar o inyectar o renderizar las cards dentro del catalogo.
 
-    let cardContent =
-      document.createElement('div');
-    cardContent.className = 'card h-100';
+PRODUCTS.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'col';
 
-    let cardBody = document.createElement('div');
-    cardContent.className = 'card-body';
+  card.innerHTML = `<div class="card h-100">
+	<div class="card-body">
+	<h5 class="card-title">${p.name}</h5>
+	<p class="card-text bold-test">${p.manufacturer}</p>
+	</div>
+	<div class="card-footer bg-white border-0">$ ${p.cost_in_credits}</div>
+	<div class="card-footer">
+	<button id="${p.id}" class="btn btn-success">Buy</button>
+	</div>
+  </div>`;
 
-    let cardTitle = document.createElement('h5');
-    cardTitle.className = 'card-title';
-    cardTitle.innerHTML = d.name;
+  catalogueContainer.appendChild(card);
 
-    let cardText = document.createElement('p');
-    cardText.className = 'card-text bold-test';
-    cardText.innerHTML = `Price: ${d.cost_in_credits}`;
+  const button = document
+    .getElementById(p.id)
+    .addEventListener('click', () =>
+      buyProduct(p)
+    );
+});
 
-    let cardButton =
-      document.createElement('button');
-    cardButton.className = 'btn btn-primary';
-    cardButton.innerHTML = 'Buy';
-    cardButton.onclick = () => {
-      cartContent.push(d);
-      createCards(cartContent, cart, false);
-      console.log(cartContent);
-    };
+function buyProduct(product) {
+  const exists = cart.some(
+    p => p.id === product.id
+  );
 
-    cardBody.appendChild(cardTitle);
-    cardBody.appendChild(cardText);
-    if (needsButton) {
-      cardBody.appendChild(cardButton);
-    }
-    cardContent.appendChild(cardBody);
-    card.appendChild(cardContent);
+  if (!exists) {
+    product.q = 1;
+    cart.push(product);
+  } else {
+    const index = cart.indexOf(product);
+    cart[index].q++;
+  }
+  console.log(cart);
+  updateCart();
+}
 
-    id.appendChild(card);
+function updateCart() {
+  cartContainer.innerHTML = '';
+  total.innerText = '';
+  let cartTotal = 0;
+  cart.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'col';
+
+    card.innerHTML = `<div class="card h-100">
+			<div class="card-body">
+			<h5 class="card-title">${p.name} (${p.q})</h5>
+			<p class="card-text bold-test">${
+        p.manufacturer
+      }</p>
+			</div>
+			<div class="card-footer bg-white border-0">Subtotal $ ${
+        p.cost_in_credits * p.q
+      }</div>
+			<div class="card-footer">
+			<button id="${
+        p.id
+      }" class="btn btn-danger">Delete</button>
+			</div>
+		</div>`;
+
+    cartContainer.appendChild(card);
+    cartTotal =
+      cartTotal + p.q * p.cost_in_credits;
+    total.innerText = `(Total $ ${cartTotal})`;
+
+    const button = document
+      .getElementById(p.id)
+      .addEventListener('click', () =>
+        delProduct(p)
+      );
   });
 }
 
-createCards(MOCKED_DATA, catalogue, true);
+function delProduct(product) {
+  // Para borrar un elemento por indice suele utilizarse el splice (no confundir con slice)
+  const index = cart.indexOf(product);
+
+  if (product.q === 1) {
+    cart.splice(index, 1);
+  } else {
+    cart[index].q--;
+  }
+
+  updateCart();
+}
+
+function clearCart() {
+  cart = [];
+  total.innerText = '';
+  updateCart();
+}
