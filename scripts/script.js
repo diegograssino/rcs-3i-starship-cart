@@ -46,7 +46,10 @@ const btnClear = document
   .addEventListener('click', () => clearCart());
 const total = document.getElementById('total');
 
-let cart = [];
+let cart =
+  JSON.parse(localStorage.getItem('cart')) || [];
+
+//  Primer operando || Segundo Operando = verdadero si una
 
 // 2: Poblar o inyectar o renderizar las cards dentro del catalogo.
 
@@ -82,9 +85,17 @@ function buyProduct(product) {
   if (!exists) {
     product.q = 1;
     cart.push(product);
+    localStorage.setItem(
+      'cart',
+      JSON.stringify(cart)
+    );
   } else {
     const index = cart.indexOf(product);
     cart[index].q++;
+    localStorage.setItem(
+      'cart',
+      JSON.stringify(cart)
+    );
   }
   console.log(cart);
   updateCart();
@@ -134,8 +145,16 @@ function delProduct(product) {
 
   if (product.q === 1) {
     cart.splice(index, 1);
+    localStorage.setItem(
+      'cart',
+      JSON.stringify(cart)
+    );
   } else {
     cart[index].q--;
+    localStorage.setItem(
+      'cart',
+      JSON.stringify(cart)
+    );
   }
 
   updateCart();
@@ -143,6 +162,12 @@ function delProduct(product) {
 
 function clearCart() {
   cart = [];
+  localStorage.setItem(
+    'cart',
+    JSON.stringify(cart)
+  );
   total.innerText = '';
   updateCart();
 }
+
+updateCart();
